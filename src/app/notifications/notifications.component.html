@@ -1,0 +1,95 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <form (ngSubmit)="onSubmit()" #f="ngForm">
+        <div
+          id="user-data"
+          ngModelGroup="userData"
+          #userData="ngModelGroup">
+
+          <!-- title -->
+          <div class="form-group">
+            <label for="title">Title</label>
+            <input
+              type="text"
+              id="title"
+              class="form-control"
+              ngModel
+              name="title"
+              required>
+          </div>
+
+          <!-- message -->
+          <div class="form-group">
+            <label for="message">Message</label>
+            <input
+              type="text"
+              id="message"
+              class="form-control"
+              ngModel
+              name="message"
+              required>
+          </div>
+          </div>
+
+        <p *ngIf="!userData.valid && userData.touched">User Data is invalid!</p>
+        <div class="form-group">
+            <label for="downloadLink">PDF Link</label>
+            <input
+              type="text"
+              id="downloadLink"
+              class="form-control"
+              ngModel
+              name="downloadLink">
+          </div>
+
+          <div class="form-group">
+            <label for="img">Image Link</label>
+            <input
+              type="text"
+              id="img"
+              class="form-control"
+              ngModel
+              name="img">
+          </div>
+
+          <div class="form-group">
+            <label for="newsLink">News Link</label>
+            <input
+              type="text"
+              id="newsLink"
+              class="form-control"
+              ngModel
+              name="newsLink">
+          </div>
+            <label for="type">Type of notification</label>
+        <div class="radio" *ngFor="let type of types">
+          <label>
+            <input
+              type="radio"
+              name="type"
+              ngModel
+              [value]="type"
+              required>
+            {{ type }}
+          </label>
+        </div>
+        <button
+          class="btn btn-primary"
+          type="submit"
+          [disabled]="!f.valid">Submit</button>
+      </form>
+    </div>
+  </div>
+  <hr>
+  <div class="row" *ngIf="submitted">
+    <div class="col-xs-12">
+      <h3>Your Data</h3>
+      <p>title: {{ notification.title }}</p>
+      <p>Message: {{ notification.message }}</p>
+      <p>downloadLink: {{ notification.downloadLink }}</p>
+      <p>Answer: {{notification.img }}</p>
+      <p>img: {{ notification.type }}</p>
+    </div>
+  </div>
+</div>
